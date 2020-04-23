@@ -27,7 +27,10 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
+      env:
+        IS_TAGGED_RELEASE: ${{startsWith(github.ref, 'refs/tags/v')}}
       run: |
+        echo ${IS_TAGGED_RELEASE}
         echo ${GITHUB_REF##*/}
         echo Add other actions to build,
         echo test, and deploy your project.
